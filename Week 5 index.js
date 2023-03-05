@@ -10,8 +10,7 @@ class Player {
     }
 }
 class Group {
-    
-    constructor(name) {
+     constructor(name) {
         this.name = name;
         this.players = [];
     }
@@ -26,7 +25,7 @@ addPlayer(player) {
 }
     
 describe() {
-    return `${this.name} is a  ${this.species.length} players.`;
+    return `${this.name} is a  ${this.players.length} players.`;
     }
 }
 class Menu { 
@@ -80,7 +79,7 @@ class Menu {
         return prompt(`
             0) back
             1) create a new Player
-            2) retire a Player
+            2) delete a Player
             
         ${GroupInfo}
     `);
@@ -89,7 +88,7 @@ class Menu {
 displayGroups() {
     let groupString = '';
         for (let i = 0; i < this.Group.length; i++) {
-        groupString += i+ ') ' + this.group[i].name + '\n';
+        groupString += i+ ') ' + this.Group[i].name + '\n';
         }
     alert(groupString);
 }
@@ -99,10 +98,10 @@ createGroup() {
     this.Group.push(new Group(name));
 }
     
-    displayGroup() {
+    viewGroup() {
         let index = prompt("Enter the index of the Group that you want to view:");
         if (index > -1 && index < this.Group.length) {
-            this.selectedGroup = this.group[index];
+            this.selectedGroup = this.Group[index];
             let description = 'Group Name: ' + this.selectedGroup.name + '\n';
             description += ' ' + this.selectedGroup.describe() + '\n ';
             for (let i = 0; i < this.selectedGroup.players.length; i++) {
@@ -122,21 +121,21 @@ createGroup() {
     deleteGroup() {
         let index = prompt('Enter the index of the Group that you wish to delete: ');
         if (index > -1 && index < this.Group.length) {
-            this.group.splice(index,1);
+            this.Group.splice(index,1);
         }
     }
     
     
     createPlayer() {
         let name = prompt('Enter name for new player: ');
-        let position = prompt('Enter species for new player: ');
+        let species = prompt('Enter species for new player: ');
         this.selectedGroup.addPlayer(new Player(name,species));
     }
     
     deletePlayer(){
         let index = prompt('Enter the index of the player that you wish to delete: ');
         if (index > -1 && index < this.selectedGroup.players.length) 
-        { this.selectedTeam.players.splice(index,1);
+        { this.selectedGroup.players.splice(index,1);
         }
     }
 }
